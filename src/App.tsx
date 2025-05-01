@@ -1,7 +1,8 @@
-import { AudioClips } from "./types";
+import { AudioClip } from "./types";
+import Drum from "./Drum";
 import './App.css';
 
-const AudioClip: AudioClip[] = [
+const audioClips: AudioClip[] = [
   {
     keyTrigger: "Q",
     url: "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3",
@@ -53,9 +54,15 @@ function App() {
 
 
   return (
-    <>
-      
-    </>
+    <div className="container" id="drum-machine">
+      <h1>FCC Drum Machine</h1>
+      <div className="whole-drum">
+        {audioClips.map((clip) => (
+          <Drum />
+        ))}
+      </div>
+      <div id="display"></div>
+    </div>
   )
 }
 
