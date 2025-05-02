@@ -1,11 +1,21 @@
+import { AudioClip } from "./types";
 
+interface DrumProps {
+  audioClip: AudioClip;
+}
 
-const Drum = () => {
+const Drum = ( {audioClip}: DrumProps) => {
+  const playSound = (clip:AudioClip) =>{
+    (document.getElementById(clip.keyTrigger) as HTMLAudioElement).play().catch(console.error);
+  }
   return (
-    <div>
-      Drum
-    </div>
+    <button  className="drum-pad"
+    id={`drum-${audioClip.keyTrigger}`}
+    onClick={() => playSound(audioClip)  } >
+      <audio src={audioClip.url} id={audioClip.keyTrigger} className="clip"/>
+      {audioClip.keyTrigger}
+    </button>
   )
 }
 
-export default Drum
+export default Drum;
